@@ -5,6 +5,8 @@ let activePlayer = 0;
 
 const scores = [0, 0];
 
+const playerEl0 = document.querySelector('.player--0');
+const playerEl1 = document.querySelector('.player--1');
 const scoreEl0 = document.getElementById('score--0');
 const scoreEl1 = document.getElementById('score--1');
 const diceEl = document.querySelector('.dice');
@@ -32,6 +34,9 @@ btnRoll.addEventListener('click', function () {
   } else {
     scores[activePlayer] += currentScore;
     currentScore = 0;
+    playerEl0.classList.toggle('player--active');
+    playerEl1.classList.toggle('player--active');
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
     activePlayer = activePlayer === 0 ? 1 : 0;
   }
 });
