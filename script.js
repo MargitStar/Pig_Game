@@ -22,21 +22,26 @@ scoreEl0.textContent = 0;
 scoreEl1.textContent = 0;
 diceEl.classList.add('hidden');
 
+const changePlayer = function () {
+  scores[activePlayer] += currentScore;
+  currentScore = 0;
+  playerEl0.classList.toggle('player--active');
+  playerEl1.classList.toggle('player--active');
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+};
+
 btnRoll.addEventListener('click', function () {
   const diceNumber = Math.trunc(Math.random() * 6) + 1;
   diceEl.classList.remove('hidden');
   diceEl.src = `pic/dice-${diceNumber}.png`;
   if (diceNumber !== 1) {
     currentScore += diceNumber;
-    document.getElementById(`current--${activePlayer}`).textContent =
-      scores[activePlayer] + currentScore;
+    document.getElementById(
+      `current--${activePlayer}`
+    ).textContent = currentScore;
     console.log(scores);
   } else {
-    scores[activePlayer] += currentScore;
-    currentScore = 0;
-    playerEl0.classList.toggle('player--active');
-    playerEl1.classList.toggle('player--active');
-    document.getElementById(`current--${activePlayer}`).textContent = 0;
-    activePlayer = activePlayer === 0 ? 1 : 0;
+    changePlayer();
   }
 });
