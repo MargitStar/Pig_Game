@@ -49,5 +49,18 @@ btnHold.addEventListener('click', function () {
   scores[activePlayer] += currentScore;
   document.getElementById(`score--${activePlayer}`).textContent =
     scores[activePlayer];
+
   changePlayer();
+
+  if (scores[activePlayer] >= 100) {
+    console.log('Hey');
+    diceEl.classList.add('hidden');
+
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add('player--winner');
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.remove('player--active');
+  }
 });
