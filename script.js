@@ -1,6 +1,9 @@
 'use strict';
 
 let currentScore = 0;
+let activePlayer = 0;
+
+const scores = [0, 0];
 
 const scoreEl0 = document.getElementById('score--0');
 const scoreEl1 = document.getElementById('score--1');
@@ -23,8 +26,12 @@ btnRoll.addEventListener('click', function () {
   diceEl.src = `pic/dice-${diceNumber}.png`;
   if (diceNumber !== 1) {
     currentScore += diceNumber;
-    console.log(currentScore);
-    current0.textContent = currentScore;
+    document.getElementById(`current--${activePlayer}`).textContent =
+      scores[activePlayer] + currentScore;
+    console.log(scores);
   } else {
+    scores[activePlayer] += currentScore;
+    currentScore = 0;
+    activePlayer = activePlayer === 0 ? 1 : 0;
   }
 });
