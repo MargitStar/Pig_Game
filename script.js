@@ -23,7 +23,6 @@ scoreEl1.textContent = 0;
 diceEl.classList.add('hidden');
 
 const changePlayer = function () {
-  scores[activePlayer] += currentScore;
   currentScore = 0;
   playerEl0.classList.toggle('player--active');
   playerEl1.classList.toggle('player--active');
@@ -44,4 +43,11 @@ btnRoll.addEventListener('click', function () {
   } else {
     changePlayer();
   }
+});
+
+btnHold.addEventListener('click', function () {
+  scores[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`).textContent =
+    scores[activePlayer];
+  changePlayer();
 });
